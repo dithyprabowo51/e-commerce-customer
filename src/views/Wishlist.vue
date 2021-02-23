@@ -2,6 +2,7 @@
   <div id="wishlist" class="container">
     <h2>Wishlist</h2>
     <Item v-for="wishlist in wishlists" :key="wishlist.id" :wishlist="wishlist"></Item>
+    <h4 class="mt-3" v-if="wishlists.length === 0">You have no wishlist</h4>
   </div>
 </template>
 

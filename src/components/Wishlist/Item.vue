@@ -8,10 +8,10 @@
         <p>{{wishlist.Product.name}}</p>
         <p>Rp. {{wishlist.Product.price}}</p>
         <p>Stock: {{wishlist.Product.stock}}</p>
-        <button class="btn btn-sm btn-secondary">Add to Cart</button>
+        <button @click.prevent="addToCart" class="btn btn-sm btn-secondary">Add to Cart</button>
       </div>
       <div>
-        <i class="fas fa-times-circle"></i>
+        <i @click.prevent="deleteWishlist" class="fas fa-times-circle"></i>
       </div>
     </div>
     </div>
@@ -19,7 +19,20 @@
 
 <script>
 export default {
-  props: ['wishlist']
+  props: ['wishlist'],
+  methods: {
+    addToCart () {
+      this.$store.dispatch('addCartItem', {
+        ProductId: this.wishlist.Product.id,
+        CategoryId: this.wishlist.Product.Categories[0].id
+      })
+    },
+    deleteWishlist () {
+      this.$store.dispatch('deleteWishlist', {
+        WishlistId: this.wishlist.id
+      })
+    }
+  }
 }
 </script>
 

@@ -7,7 +7,7 @@
         <h6 class="card-text text-center">Rp. {{product.price}}</h6>
         <h6 class="card-text text-center">Stock: {{product.stock}}</h6>
         <a @click.prevent="addCartItem" href="" class="btn btn-primary btn-sm mt-3">Add to Cart</a>
-        <a href="" class="btn btn-secondary btn-sm mt-2">Add to Wishlist</a>
+        <a @click.prevent="addToWishlist" href="" class="btn btn-secondary btn-sm mt-2">Add to Wishlist</a>
       </div>
     </div>
   </div>
@@ -21,7 +21,13 @@ export default {
       if (!localStorage.getItem('access_token')) return this.$router.push('/login')
       this.$store.dispatch('addCartItem', {
         ProductId: this.product.id,
-        CategoryId: this.product.Categories[0].id
+        CategoryId: this.$route.params.CategoryId
+      })
+    },
+    addToWishlist () {
+      if (!localStorage.getItem('access_token')) return this.$router.push('/login')
+      this.$store.dispatch('addWishlist', {
+        ProductId: this.product.id
       })
     }
   }

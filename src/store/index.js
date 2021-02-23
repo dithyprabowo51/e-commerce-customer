@@ -117,6 +117,7 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.dispatch('fetchCartItems')
+          context.dispatch('fetchWishlists')
           context.dispatch('fetchProducts', {
             CategoryId: payload.CategoryId
           })
@@ -181,6 +182,29 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('setWishlists', data.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    addWishlist (context, payload) {
+      axios({
+        url: '/wishlists',
+        method: 'POST',
+        headers: { access_token: localStorage.getItem('access_token') },
+        data: {
+          ProductId: payload.ProductId
+        }
+      })
+    },
+    deleteWishlist (context, payload) {
+      axios({
+        url: '/wishlists/' + payload.WishlistId,
+        method: 'DELETE',
+        headers: { access_token: localStorage.getItem('access_token') }
+      })
+        .then(() => {
+          context.dispatch('fetchWishlists')
         })
         .catch(err => {
           console.log(err)
