@@ -16,7 +16,7 @@
                 </tr>
               </thead>
               <tbody>
-                <Item></Item>
+                <Item v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"></Item>
               </tbody>
             </table>
           </div>
@@ -29,7 +29,7 @@
               <thead>
                 <tr>
                   <th scope="col">Subtotal</th>
-                  <td>Rp. 300.000</td>
+                  <td>Rp. {{getTotal}}</td>
                 </tr>
               </thead>
               <tbody>
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                   <th>Total</th>
-                  <td>Rp 300.000</td>
+                  <td>Rp {{getTotal}}</td>
                 </tr>
               </tbody>
             </table>
@@ -54,7 +54,23 @@
 <script>
 import Item from '../components/Cart/Item.vue'
 export default {
-  components: { Item }
+  components: { Item },
+  computed: {
+    cartItems () {
+      return this.$store.state.cartItems
+    },
+    getTotal () {
+      let total = 0
+      this.$store.state.cartItems.forEach(e => {
+        const subTotal = e.price * e.OrderProduct.quantity
+        total += subTotal
+      })
+      return total
+    }
+  },
+  created () {
+    this.$store.dispatch('fetchCartItems')
+  }
 }
 </script>
 

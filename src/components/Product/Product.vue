@@ -1,12 +1,12 @@
 <template>
   <div id="category" class="m-5">
     <div class="card" style="width: 10rem; border: none;">
-      <img src="https://images.unsplash.com/photo-1543508282-6319a3e2621f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=658&q=80" class="card-img-top" height="150px" alt="...">
+      <img :src="product.image_url" class="card-img-top" height="150px" alt="...">
       <div class="card-body text-center">
-        <h5 class="card-title text-center">Card title</h5>
-        <p class="card-text text-center">Rp. 500.000</p>
-        <p class="card-text text-center">Stock: 10</p>
-        <a href="#" class="btn btn-secondary btn-sm">Add To Cart</a>
+        <h5 class="card-title text-center">{{product.name}}</h5>
+        <p class="card-text text-center">Rp. {{product.price}}</p>
+        <p class="card-text text-center">Stock: {{product.stock}}</p>
+        <a @click.prevent="addCartItem" href="" class="btn btn-secondary btn-sm">Add To Cart</a>
       </div>
     </div>
   </div>
@@ -14,7 +14,16 @@
 
 <script>
 export default {
-
+  props: ['product'],
+  methods: {
+    addCartItem () {
+      if (!localStorage.getItem('access_token')) return this.$router.push('/login')
+      this.$store.dispatch('addCartItem', {
+        ProductId: this.product.id,
+        CategoryId: this.product.Categories[0].id
+      })
+    }
+  }
 }
 </script>
 

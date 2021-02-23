@@ -25,8 +25,11 @@
           <div class="col m-1">
             <a @click.prevent="changePage('/cart')" href="">Cart</a>
           </div>
-          <div class="col m-1">
+          <div v-if="showLogout" class="col m-1">
             <a @click.prevent="logout" href="">Logout</a>
+          </div>
+          <div v-if="showLogin" class="col m-1">
+            <a @click.prevent="changePage('/login')" href="">Login</a>
           </div>
         </div>
       </div>
@@ -36,6 +39,20 @@
 
 <script>
 export default {
+  computed: {
+    showLogin () {
+      if (localStorage.getItem('access_token')) {
+        return false
+      }
+      return true
+    },
+    showLogout () {
+      if (localStorage.getItem('access_token')) {
+        return true
+      }
+      return false
+    }
+  },
   methods: {
     changePage (val) {
       this.$router.push(val)

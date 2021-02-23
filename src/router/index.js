@@ -38,7 +38,14 @@ const routes = [
   {
     path: '/cart',
     name: 'Cart',
-    component: CartPage
+    component: CartPage,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem('access_token')) {
+        next('/login')
+      } else {
+        next()
+      }
+    }
   }
 ]
 

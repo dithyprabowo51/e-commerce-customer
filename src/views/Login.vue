@@ -15,6 +15,9 @@
           <div class="mb-3">
             <a @click.prevent="changePage('/register')" href="">Dont have an account ?</a>
           </div>
+          <div class="mb-3">
+            <a @click.prevent="changePage('/')" href="">Back to Home</a>
+          </div>
         </form>
       </div>
     </div>
