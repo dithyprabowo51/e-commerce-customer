@@ -10,7 +10,8 @@ export default new Vuex.Store({
     banners: [],
     categories: [],
     products: [],
-    cartItems: []
+    cartItems: [],
+    wishlists: []
   },
   mutations: {
     setIsLoading (state, payload) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setCartItems (state, payload) {
       state.cartItems = payload
+    },
+    setWishlists (state, payload) {
+      state.wishlists = payload
     }
   },
   actions: {
@@ -164,6 +168,19 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.dispatch('fetchCartItems')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchWishlists (context) {
+      axios({
+        url: '/wishlists',
+        method: 'GET',
+        headers: { access_token: localStorage.getItem('access_token') }
+      })
+        .then(({ data }) => {
+          context.commit('setWishlists', data.data)
         })
         .catch(err => {
           console.log(err)

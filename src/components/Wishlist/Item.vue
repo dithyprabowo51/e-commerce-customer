@@ -2,12 +2,12 @@
   <div class="item-wishlist my-4">
     <div class="row align-items-center">
       <div class="col-3">
-        <img src="../../assets/no_image.png" width="100px" height="100px" alt="">
+        <img :src="wishlist.Product.image_url" width="100px" height="100px" alt="">
       </div>
       <div class="col-5" style="margin-left: 50px;">
-        <p>Product Name</p>
-        <p>Rp. 500000</p>
-        <p>Stock: 100</p>
+        <p>{{wishlist.Product.name}}</p>
+        <p>Rp. {{wishlist.Product.price}}</p>
+        <p>Stock: {{wishlist.Product.stock}}</p>
         <button class="btn btn-sm btn-secondary">Add to Cart</button>
       </div>
       <div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-
+  props: ['wishlist']
 }
 </script>
 
