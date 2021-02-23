@@ -38,18 +38,22 @@ export default new Vuex.Store({
       context.commit('setIsLoading', payload)
     },
     fetchAllBanners (context) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/banners?status=true',
         method: 'GET'
       })
         .then(({ data }) => {
           context.commit('setBanners', data.data)
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     fetchBannersByCategory (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/banners/?CategoryId=' + payload.CategoryId,
         method: 'GET'
@@ -63,36 +67,45 @@ export default new Vuex.Store({
             }]
             context.commit('setBanners', obj)
           }
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     fetchAllCategories (context) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/categories',
         method: 'GET'
       })
         .then(({ data }) => {
           context.commit('setCategories', data.data)
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     fetchProducts (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/products?CategoryId=' + payload.CategoryId,
         method: 'GET'
       })
         .then(({ data }) => {
           context.commit('setProducts', data)
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     fetchCartItems (context) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/orders',
         method: 'GET',
@@ -100,13 +113,16 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('setCartItems', data.data.Products)
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
           context.commit('setCartItems', [])
           console.log(err)
+          context.dispatch('setIsLoading', false)
         })
     },
     addCartItem (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/orders',
         method: 'POST',
@@ -123,10 +139,12 @@ export default new Vuex.Store({
           })
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     reduceQuantity (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/orders/reduceQuantity',
         method: 'PATCH',
@@ -139,10 +157,12 @@ export default new Vuex.Store({
           context.dispatch('fetchCartItems')
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     addQuantity (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/orders/addQuantity',
         method: 'PATCH',
@@ -155,10 +175,19 @@ export default new Vuex.Store({
           context.dispatch('fetchCartItems')
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
+          Vue.swal({
+            icon: 'error',
+            title: 'Oops',
+            text: 'Stock was empty',
+            showConfirmButton: false,
+            timer: 1500
+          })
           console.log(err)
         })
     },
     deleteCartItem (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: 'orders/deleteItem',
         method: 'DELETE',
@@ -171,10 +200,12 @@ export default new Vuex.Store({
           context.dispatch('fetchCartItems')
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     fetchWishlists (context) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/wishlists',
         method: 'GET',
@@ -182,12 +213,15 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('setWishlists', data.data)
+          context.dispatch('setIsLoading', false)
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     },
     addWishlist (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/wishlists',
         method: 'POST',
@@ -196,8 +230,16 @@ export default new Vuex.Store({
           ProductId: payload.ProductId
         }
       })
+        .then(() => {
+          context.dispatch('setIsLoading', false)
+        })
+        .catch(err => {
+          context.dispatch('setIsLoading', false)
+          console.log(err)
+        })
     },
     deleteWishlist (context, payload) {
+      context.dispatch('setIsLoading', true)
       axios({
         url: '/wishlists/' + payload.WishlistId,
         method: 'DELETE',
@@ -207,6 +249,7 @@ export default new Vuex.Store({
           context.dispatch('fetchWishlists')
         })
         .catch(err => {
+          context.dispatch('setIsLoading', false)
           console.log(err)
         })
     }

@@ -23,12 +23,30 @@ export default {
         ProductId: this.product.id,
         CategoryId: this.$route.params.CategoryId
       })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            title: 'SUCCESS',
+            text: `Added ${this.product.name} to cart`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     },
     addToWishlist () {
       if (!localStorage.getItem('access_token')) return this.$router.push('/login')
       this.$store.dispatch('addWishlist', {
         ProductId: this.product.id
       })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            title: 'SUCCESS',
+            text: `Added ${this.product.name} to wishlist`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     }
   }
 }

@@ -39,6 +39,7 @@ export default {
       this.$router.push(val)
     },
     login () {
+      this.$store.dispatch('setIsLoading', true)
       axios({
         url: 'http://localhost:3000/login',
         method: 'POST',
@@ -53,6 +54,7 @@ export default {
           this.password = ''
           localStorage.setItem('access_token', data.access_token)
           this.$router.push('/')
+          this.$store.dispatch('setIsLoading', false)
         })
         .catch(err => {
           this.email = ''
@@ -60,6 +62,7 @@ export default {
           if (err.response.status === 401) {
             this.errorValidate = 'Invalid email or password'
           }
+          this.$store.dispatch('setIsLoading', false)
         })
     }
   }
