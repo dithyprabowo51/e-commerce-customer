@@ -60,7 +60,7 @@ export default {
       if (this.password !== this.confirmPassword) return this.errorValidate.password.push('Password doesnt match')
       this.$store.dispatch('setIsLoading', true)
       axios({
-        url: 'http://localhost:3000/register',
+        url: 'https://ecommerce-cms-server-adit.herokuapp.com/register',
         method: 'POST',
         data: {
           email: this.email,

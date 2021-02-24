@@ -41,7 +41,7 @@ export default {
     login () {
       this.$store.dispatch('setIsLoading', true)
       axios({
-        url: 'http://localhost:3000/login',
+        url: 'https://ecommerce-cms-server-adit.herokuapp.com/login',
         method: 'POST',
         data: {
           email: this.email,

@@ -26,15 +26,6 @@ export default {
         ProductId: this.wishlist.Product.id,
         CategoryId: this.wishlist.Product.Categories[0].id
       })
-        .then(() => {
-          this.$swal({
-            icon: 'success',
-            title: 'SUCCESS',
-            text: `Added ${this.wishlist.Product.name} to cart`,
-            showConfirmButton: false,
-            timer: 1500
-          })
-        })
     },
     deleteWishlist () {
       this.$store.dispatch('deleteWishlist', {

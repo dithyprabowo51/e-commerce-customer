@@ -137,9 +137,23 @@ export default new Vuex.Store({
           context.dispatch('fetchProducts', {
             CategoryId: payload.CategoryId
           })
+          Vue.swal({
+            icon: 'success',
+            title: 'SUCCESS',
+            text: `Added ${this.product.name} to cart`,
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
         .catch(err => {
           context.dispatch('setIsLoading', false)
+          Vue.swal({
+            icon: 'error',
+            title: 'Oops',
+            text: 'Stock was empty',
+            showConfirmButton: false,
+            timer: 1500
+          })
           console.log(err)
         })
     },

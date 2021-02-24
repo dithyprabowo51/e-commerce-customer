@@ -3,43 +3,33 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-3">
-          <h1 class="text-light">LOREM</h1>
-          <p class="text-secondary text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium molestias quaerat est velit sapiente non laudantium praesentium voluptas odit corrupti! Assumenda fuga ex quod dolor at ab nam velit inventore.</p>
+          <h1 class="text-light">E-Commerce</h1>
+          <p class="text-secondary text-justify">My E-Commerce has given us the power to create unique, and engaging customer shopping experience. There are many rich, out-of-the-box features and seamless third-party integrations we can utilize. --Adityo Prabowo, owner this E-Commerce.</p>
         </div>
         <div class="col-2">
           <h3 class="text-light">Service</h3>
             <ul>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
+              <li><a @click.prevent href="">Products</a></li>
+              <li><a @click.prevent href="">Promo</a></li>
+              <li><a @click.prevent href="">Shopping</a></li>
+              <li><a @click.prevent href="">Ekspedisi</a></li>
             </ul>
         </div>
         <div class="col-2">
           <h3 class="text-light">About Us</h3>
           <ul>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
-              <li><a href="">lorem</a></li>
+              <li><a @click.prevent href="">Profile</a></li>
+              <li><a @click.prevent href="">Owner</a></li>
+              <li><a @click.prevent href="">Contact Us</a></li>
             </ul>
         </div>
         <div class="col-3">
           <h3 class="text-light">Find Us</h3>
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-instagram"></i>
+          <a target="_blank" href="https://www.instagram.com/adityo_prabowo51/"><i class="fab fa-instagram"></i></a>
           <h4 class="text-light mt-4">Download App</h4>
           <div class="row">
             <div class="col-4">
               <img src="../assets/googleplay.png" alt="" width="100px" height="50px">
-            </div>
-            <div class="col mt-2">
-              <img src="../assets/appstore.png" alt="" width="100px" height="35px">
             </div>
           </div>
         </div>
