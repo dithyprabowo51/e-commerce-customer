@@ -140,7 +140,7 @@ export default new Vuex.Store({
           Vue.swal({
             icon: 'success',
             title: 'SUCCESS',
-            text: `Added ${this.product.name} to cart`,
+            text: 'Added product to cart successfully',
             showConfirmButton: false,
             timer: 1500
           })
