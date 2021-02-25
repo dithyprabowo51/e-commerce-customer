@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../api/index.js'
 export default {
   data () {
     return {
@@ -60,7 +60,7 @@ export default {
       if (this.password !== this.confirmPassword) return this.errorValidate.password.push('Password doesnt match')
       this.$store.dispatch('setIsLoading', true)
       axios({
-        url: 'https://ecommerce-cms-server-adit.herokuapp.com/register',
+        url: '/register',
         method: 'POST',
         data: {
           email: this.email,

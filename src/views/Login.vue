@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../api/index.js'
 export default {
   data () {
     return {
@@ -41,7 +41,7 @@ export default {
     login () {
       this.$store.dispatch('setIsLoading', true)
       axios({
-        url: 'https://ecommerce-cms-server-adit.herokuapp.com/login',
+        url: '/login',
         method: 'POST',
         data: {
           email: this.email,
